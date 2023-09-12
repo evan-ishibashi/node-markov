@@ -53,26 +53,30 @@ class MarkovMachine {
     // - find a random word from the following-words of that
     // - repeat until reaching the terminal null
 
-    let text = [this.words[0]];
+    let text = [];
     let currentWord = this.words[0];
 
-    while (true) {
+    while (currentWord) {
+      text.push(currentWord);
+
       const nextWords = this.chains[currentWord];
 
       const numOfPossibilites = nextWords.length;
-      const randomIdx = Math.floor(Math.random() * numOfPossibilites);
+      const randomIdx = MarkovMachine.generateRandomIdx(numOfPossibilites);
 
       const nextWord = nextWords[randomIdx];
 
-      if (!nextWord) {
-        return text.join(" ");
-      }
-
-      text.push(nextWord);
       currentWord = nextWord;
     }
 
+    return text.join(" ");
   }
+
+  /** generateRandoIdx: returns a random number from 1 to input length */
+  static generateRandomIdx(length) {
+    return Math.floor(Math.random() * length);
+  }
+
 }
 
 
