@@ -20,11 +20,7 @@ describe("getChains function", function () {
 });
 
 describe("getText function", function () {
-
   let machine;
-  beforeEach(function () {
-
-  });
 
   test("returns random markov text", function () {
     machine = new MarkovMachine("the cat in hat is fat");
@@ -35,11 +31,12 @@ describe("getText function", function () {
   });
 
   test("returns random markov text", function () {
-    machine = new MarkovMachine("The cat is in the hat. The cat is the cat. The hat is a cat.");
+    machine = new MarkovMachine("a b c a");
 
     const text = machine.getText();
-    expect(text).toMatch(/^The/);
-    expect(text).toMatch(/cat\.$/);
+    // expect(text).toMatch(/^The/);
+    // expect(text).toMatch(/cat\.$/);
+    expect(["a b c a", "a b c a b c a", "a"]).toContain(text)
   });
 
 
